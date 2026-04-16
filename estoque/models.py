@@ -1,5 +1,6 @@
 from django.db import models
 from produtos.models import Produto
+from decimal import Decimal
 
 class Estoque(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
@@ -20,7 +21,7 @@ class Estoque(models.Model):
     atualizado_em = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        self.preco_total = self.quantidade * self.preco_unitario
+        self.preco_total = Decimal(self.quantidade) * Decimal(self.preco_unitario)
         super().save(*args, **kwargs)
 
     def __str__(self):

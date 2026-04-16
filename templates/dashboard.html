@@ -1,19 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2 class="text-2xl font-bold mb-4">Dashboard</h2>
+<h2 class="text-2xl font-bold mb-6">Dashboard</h2>
 
-<div class="grid grid-cols-3 gap-4">
-    <div class="bg-white p-4 rounded shadow">
-        <h3>Produtos</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <!-- Produtos -->
+    <div class="bg-white p-6 rounded shadow">
+        <h3 class="text-gray-500">Produtos</h3>
+        <p class="text-3xl font-bold text-blue-600">
+            {{ produtos_count }}
+        </p>
     </div>
 
-    <div class="bg-white p-4 rounded shadow">
-        <h3>Vendas</h3>
+    <!-- Vendas -->
+    <div class="bg-white p-6 rounded shadow">
+        <h3 class="text-gray-500">Vendas</h3>
+        <p class="text-3xl font-bold text-green-600">
+            {{ vendas_count }}
+        </p>
     </div>
 
-    <div class="bg-white p-4 rounded shadow">
-        <h3>Financeiro</h3>
+    <!-- Financeiro (exemplo futuro) -->
+    <div class="bg-white p-6 rounded shadow">
+        <h3 class="text-gray-500">Financeiro</h3>
+        <p class="text-3xl font-bold text-purple-600">
+            R$ 0,00
+        </p>
     </div>
+
 </div>
 {% endblock %}
