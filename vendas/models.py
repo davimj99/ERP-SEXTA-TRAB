@@ -1,24 +1,20 @@
 from django.db import models
 from produtos.models import Produto
-
+from clientes.models import Cliente
 
 class Venda(models.Model):
+    cliente = models.ForeignKey(
+        Cliente,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+
     data_venda = models.DateTimeField(auto_now_add=True)
     valor_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
-        return f"Venda {self.id}"
-
-    def calcular_total(self):
-        total = sum(item.subtotal() for item in self.itens.all())
-        self.valor_total = total
-        self.save()
-
-    def baixar_estoque(self):
-        for item in self.itens.all():
-            produto = item.produto
-            produto.estoque -= item.quantidade
-            produto.save()
+        return f"Venda {self.id} - {self.cliente}"
 
 
 class ItemVenda(models.Model):
