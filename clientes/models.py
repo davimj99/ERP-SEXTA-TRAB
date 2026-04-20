@@ -13,7 +13,6 @@ class Cliente(models.Model):
     # Data automática de quando o cliente foi cadastrado
     data_cadastro = models.DateTimeField(auto_now_add=True)
 
-    # Isso faz com que o nome do cliente apareça bonito no painel do Django
+    # Isso faz com que o nome do cliente apareça bonitinho no painel do Django
     def __str__(self):
         return self.nomes
-    
