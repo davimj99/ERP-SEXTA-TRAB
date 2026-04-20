@@ -1,28 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Novo Produto</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Estilos básicos reaproveitados */
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f6f9; display: flex; justify-content: center; padding: 50px; }
-        .form-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); width: 100%; max-width: 600px; }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: bold; color: #2c3e50; }
-        input, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-family: inherit;}
-        .btn-salvar { background: #2ecc71; color: white; border: none; padding: 12px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%; }
-        .btn-voltar { display: block; text-align: center; margin-top: 15px; color: #7f8c8d; text-decoration: none; }
-        
-        /* Estilos da Notificação */
-        .container-notificacao { position: fixed; top: 20px; right: 20px; z-index: 1000; pointer-events: none; }
-        .nuvem-alerta { background-color: #e74c3c; color: white; padding: 16px 25px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 12px; font-weight: 600; animation: entrada-suave 0.5s ease-out forwards; position: relative; overflow: hidden; }
-        .nuvem-sucesso { background-color: #2ecc71; } /* Cor verde para sucesso */
-        .barra-tempo { position: absolute; bottom: 0; left: 0; height: 4px; background: rgba(255,255,255,0.4); width: 100%; animation: progresso-tempo 4s linear forwards; }
-        
-        @keyframes entrada-suave { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        @keyframes progresso-tempo { from { width: 100%; } to { width: 0%; } }
-    </style>
+    <link rel="stylesheet" href="{% static 'produtos/css/produto.css' %}">
 </head>
 <body>
     
@@ -53,7 +36,7 @@
     <div class="form-container">
         <h2 style="margin-bottom: 25px; color: #2c3e50;"><i class="fas fa-box-open"></i> Cadastro de Novo Produto</h2>
         
-        <form method="POST" action="/produtos/new/">
+        <form method="POST">
             {% csrf_token %} 
             
             <div class="form-group">

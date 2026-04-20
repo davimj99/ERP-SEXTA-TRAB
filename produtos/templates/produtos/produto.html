@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Supermercado Aliança</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'produtos/css/produto.css' %}">
+
+</head>
+<body>
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <h2>Supermercado<span>Aliança</span></h2>
+    </div>
+
+    <ul class="sidebar-menu">
+
+        <li>
+            <a href="{% url 'dashboard' %}">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'produtos' %}" class="{% if request.resolver_match.url_name == 'produtos' %}active{% endif %}">
+                <i class="fas fa-box-open"></i> Produtos
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'estoque' %}" class="{% if request.resolver_match.url_name == 'estoque' %}active{% endif %}">
+                <i class="fas fa-boxes"></i> Estoque
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'vendas' %}" class="{% if request.resolver_match.url_name == 'vendas' %}active{% endif %}">
+                <i class="fas fa-shopping-cart"></i> Vendas
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'clientes' %}" class="{% if request.resolver_match.url_name == 'clientes' %}active{% endif %}">
+                <i class="fas fa-users"></i> Clientes
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'financeiro' %}" class="{% if request.resolver_match.url_name == 'financeiro' %}active{% endif %}">
+                <i class="fas fa-dollar-sign"></i> Financeiro
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'usuarios' %}" class="{% if request.resolver_match.url_name == 'usuarios' %}active{% endif %}">
+                <i class="fas fa-user-cog"></i> Usuários
+            </a>
+        </li>
+    </ul>
+</aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="user-info">
+                <span>Olá, Funcionário</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </header>
+
+        <section class="page-content">
+            
+            <div class="page-header">
+                <h1>Catálogo de Produtos</h1>
+                <a href="{% url 'novo_produto' %}" class="btn-primary">
+                    <i class="fas fa-plus"></i> Novo Produto
+                </a>
+            </div>
+
+            <div class="toolbar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar por nome, SKU...">
+                </div>
+                <button style="background:none; border:1px solid #bdc3c7; padding: 8px 15px; border-radius:5px; cursor:pointer; color:#7f8c8d;">
+                    <i class="fas fa-filter"></i> Filtrar
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cód.</th>
+                            <th>SKU</th>
+                            <th>Nome do Produto</th>
+                            <th>Preço</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for produto in produtos %}
+                        <tr>
+                            <td>#{{ produto.id }}</td> 
+                            <td><span class="sku-code">{{ produto.sku|default:"-" }}</span></td>
+            
+                            <td class="item-name">{{ produto.nome }}</td>
+            
+                            <td>R$ {{ produto.preco }}</td>
+            
+                            <td>
+                            {% if produto.ativo %}
+                                <span class="status-badge status-active">Ativo</span>
+                            {% else %}
+                                <span class="status-badge status-inactive">Inativo</span>
+                            {% endif %}
+                            </td>
+            
+                            <td class="action-btns">
+                                <a href="{% url 'editar_produto' produto.id %}" class="action-btn btn-edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'excluir_produto' produto.id %}" class="action-btn btn-delete" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir o produto {{ produto.nome }}?');">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 20px;">Nenhum produto cadastrado ainda.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>
