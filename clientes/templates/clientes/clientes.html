@@ -1,45 +1,126 @@
-{% if messages %}
-    {% for message in messages %}
-        <div style="padding:10px; margin:10px; background:#d4edda; color:#155724; border-radius:5px;">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="{% static 'clientes/css/clientes.css' %}?v=4">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<aside class="sidebar">
+    <div class="sidebar-header">Meu ERP</div>
+    <ul class="sidebar-menu">
+        <li>
+            <a href="{% url 'dashboard' %}">
+                <i class="fas fa-gauge"></i> Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'clientes' %}" class="active">
+                <i class="fas fa-users"></i> Clientes
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'produtos' %}">
+                <i class="fas fa-box"></i> Produtos
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'estoque' %}">
+                <i class="fas fa-warehouse"></i> Estoque
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'vendas' %}">
+                <i class="fas fa-cart-shopping"></i> Vendas
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'financeiro' %}">
+                <i class="fas fa-dollar-sign"></i> Financeiro
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'usuarios' %}">
+                <i class="fas fa-user-gear"></i> Usuários
+            </a>
+        </li>
+    </ul>
+</aside>
 
-<a href="{% url 'novos_clientes' %}" class="btn-primary">
-    <i class="fas fa-plus"></i> Novo cliente
-</a>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content">
 
-<tbody>
-{% for cliente in clientes %}
-<tr>
-    <td>#{{ cliente.id }}</td>
-    <td>{{ cliente.nome }}</td>
-    <td>{{ cliente.email|default:"-" }}</td>
-    <td>{{ cliente.telefone|default:"-" }}</td>
-
-    <td>
-        {% if cliente.ativo %}
-            <span class="status-badge status-active">Ativo</span>
-        {% else %}
-            <span class="status-badge status-inactive">Inativo</span>
+        <!-- MENSAGENS -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
         {% endif %}
-    </td>
 
-    <td>
-        <a href="{% url 'editar_clientes' cliente.id %}">
-            ✏️
-        </a>
+        <!-- HEADER DA PÁGINA -->
+        <div class="page-header">
+            <h1>Clientes</h1>
+            <a href="{% url 'novos_clientes' %}" class="btn-primary">
+                <i class="fas fa-plus"></i> Novo cliente
+            </a>
+        </div>
 
-        <a href="{% url 'excluir_clientes' cliente.id %}" 
-           onclick="return confirm('Deseja excluir {{ cliente.nome }}?');">
-            🗑️
-        </a>
-    </td>
-</tr>
-{% empty %}
-<tr>
-    <td colspan="6">Nenhum cliente cadastrado</td>
-</tr>
-{% endfor %}
-</tbody>
+        <!-- TABELA -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in clientes %}
+                    <tr>
+                        <td>#{{ cliente.id }}</td>
+                        <td>{{ cliente.nome }}</td>
+                        <td>{{ cliente.email|default:"-" }}</td>
+                        <td>{{ cliente.telefone|default:"-" }}</td>
+                        <td>
+                            {% if cliente.ativo %}
+                                <span class="status-badge status-active">Ativo</span>
+                            {% else %}
+                                <span class="status-badge status-inactive">Inativo</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="action-btns">
+                                <a href="{% url 'editar_clientes' cliente.id %}"
+                                   class="action-btn btn-edit" title="Editar">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <a href="{% url 'excluir_clientes' cliente.id %}"
+                                   class="action-btn btn-delete" title="Excluir"
+                                   onclick="return confirm('Deseja excluir {{ cliente.nome }}?');">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" style="text-align:center; padding:40px; color:var(--text-muted);">
+                            Nenhum cliente cadastrado
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+</body>
+</html>
