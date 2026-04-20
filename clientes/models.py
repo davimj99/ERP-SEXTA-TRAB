@@ -15,4 +15,4 @@ class Cliente(models.Model):
 
     # Isso faz com que o nome do cliente apareça bonitinho no painel do Django
     def __str__(self):
-        return self.nomes
+        return self.nome
