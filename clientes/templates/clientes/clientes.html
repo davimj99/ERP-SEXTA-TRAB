@@ -1,0 +1,45 @@
+{% if messages %}
+    {% for message in messages %}
+        <div style="padding:10px; margin:10px; background:#d4edda; color:#155724; border-radius:5px;">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<a href="{% url 'novos_clientes' %}" class="btn-primary">
+    <i class="fas fa-plus"></i> Novo cliente
+</a>
+
+<tbody>
+{% for cliente in clientes %}
+<tr>
+    <td>#{{ cliente.id }}</td>
+    <td>{{ cliente.nome }}</td>
+    <td>{{ cliente.email|default:"-" }}</td>
+    <td>{{ cliente.telefone|default:"-" }}</td>
+
+    <td>
+        {% if cliente.ativo %}
+            <span class="status-badge status-active">Ativo</span>
+        {% else %}
+            <span class="status-badge status-inactive">Inativo</span>
+        {% endif %}
+    </td>
+
+    <td>
+        <a href="{% url 'editar_clientes' cliente.id %}">
+            ✏️
+        </a>
+
+        <a href="{% url 'excluir_clientes' cliente.id %}" 
+           onclick="return confirm('Deseja excluir {{ cliente.nome }}?');">
+            🗑️
+        </a>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="6">Nenhum cliente cadastrado</td>
+</tr>
+{% endfor %}
+</tbody>

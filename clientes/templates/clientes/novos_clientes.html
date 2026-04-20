@@ -1,0 +1,10 @@
+<h1>Novo Cliente</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="nome" placeholder="Nome" value="{{ nome }}">
+    <input type="email" name="email" placeholder="Email" value="{{ email }}">
+    <input type="text" name="telefone" placeholder="Telefone" value="{{ telefone }}">
+    <input type="text" name="cpf" placeholder="CPF">
+    <button type="submit">Salvar</button>
+</form>

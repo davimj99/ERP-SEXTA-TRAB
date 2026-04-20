@@ -1,0 +1,10 @@
+<h1>Editar Cliente</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="nome" value="{{ cliente.nome }}">
+    <input type="email" name="email" value="{{ cliente.email }}">
+    <input type="text" name="telefone" value="{{ cliente.telefone }}">
+    <input type="text" name="cpf" value="{{ cliente.cpf }}">
+    <button type="submit">Atualizar</button>
+</form>
