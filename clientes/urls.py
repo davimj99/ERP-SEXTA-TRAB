@@ -2,9 +2,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # Isso vai fazer a rota /clientes/ funcionar
-    path('', views.clientes, name='clientes'), 
-    path('novo/', views.novo_cliente, name='novo_cliente'),
-    path('editar/<int:id>/', views.editar_cliente, name='editar_cliente'),
-    path('excluir/<int:id>/', views.excluir_cliente, name='excluir_cliente'),
-] 
+    # Isso vai fazer a rota /clients/ funcionar
+    path('', views.clients, name='clients'), 
+    path('new/', views.new_clients, name='new_clients'),
+    path('edit/<int:id>/', views.edit_clients, name='edit_clients'),
+    path('excluir/<int:id>/', views.excluir_clients, name='excluir_clients'),
+]
