@@ -21,6 +21,8 @@ class Estoque(models.Model):
 
     atualizado_em = models.DateTimeField(auto_now=True) #Data automática de atualização.
 
+    data_validade = models.DateField(null=True, blank=True)
+
     def save(self, *args, **kwargs): #Antes de salvar no banco:calcula o preço total //
         self.preco_total = Decimal(self.quantidade) * Decimal(self.preco_unitario)
         super().save(*args, **kwargs)
