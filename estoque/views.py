@@ -8,7 +8,7 @@ from produtos.models import Produto
 # 1. FUNÇÃO DE LISTAR (A Tabela)
 def estoque(request):
     lista_estoque = Estoque.objects.all()
-    return render(request, 'estoque/estoque.html', {'estoque': lista_estoque})
+    return render(request, 'estoque.html', {'estoque': lista_estoque})
 
 # 2. FUNÇÃO DE REGISTRAR NOVO ESTOQUE
 def novo_estoque(request):
@@ -41,4 +41,4 @@ def novo_estoque(request):
             messages.error(request, f"Erro ao registrar: {e}")
 
     # Enviamos a lista de produtos para a tela renderizar as opções
-    return render(request, 'estoque/novo_estoque.html', {'produtos': produtos_cadastrados})
+    return render(request, 'novo_estoque.html', {'produtos': produtos_cadastrados})
