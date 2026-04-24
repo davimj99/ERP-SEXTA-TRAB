@@ -112,6 +112,12 @@ A regra de negócio do ERP está distribuída de forma isolada nas seguintes apl
  ┗ 📜 README.md            # Documentação principal
 ```
 
+## 🧠 Lógica de Negócio e Relacionamentos
+
+A arquitetura do banco de dados foi pensada para garantir integridade referencial. Os principais relacionamentos incluem:
+- **Venda ➔ Produto & Cliente:** O módulo de `vendas` atua como o elo central. Uma venda é atrelada a um `Cliente` e contém múltiplos `Produtos`.
+- **Venda ➔ Estoque & Financeiro:** Ao processar um pedido no módulo de Vendas, o sistema deverá abater as quantidades no app de `estoque` e gerar uma fatura a receber no app `financeiro`.
+
 ## 👥Colaboradores e Coders
 
 * **David Luiz:**
