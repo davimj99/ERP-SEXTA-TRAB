@@ -116,7 +116,7 @@ A regra de negócio do ERP está distribuída de forma isolada nas seguintes apl
 
 * **David Luiz:**
 
-  ➦Back-end
+  ➦Full-Stack
 * **Jonathan Lima:**
 
   ➦Front-end
