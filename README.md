@@ -112,4 +112,17 @@ A regra de negócio do ERP está distribuída de forma isolada nas seguintes apl
  ┗ 📜 README.md            # Documentação principal
 ```
 
+## 👥Colaboradores e Coders
 
+* **David Luiz:**
+
+  ➦Back-end
+* **Jonathan Lima:**
+
+  ➦Front-end
+* **Luiz:**
+
+  ➦Front-end
+* **Mauricio Mateus:**
+
+  ➦Análise e ReadMe
