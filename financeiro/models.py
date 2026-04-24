@@ -1,4 +1,4 @@
-from django.db import models
+yfrom django.db import models
 
 class Transacao(models.Model):
 
