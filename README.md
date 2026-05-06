@@ -123,6 +123,8 @@ A arquitetura do banco de dados foi pensada para garantir integridade referencia
 * **David Luiz:**
 
   ➦Full-Stack
+  ➦ Gestor do Projeto
+  
 * **Jonathan Lima:**
 
   ➦Front-end
