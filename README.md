@@ -118,14 +118,6 @@ A arquitetura do banco de dados foi pensada para garantir integridade referencia
 - **Venda ➔ Produto & Cliente:** O módulo de `vendas` atua como o elo central. Uma venda é atrelada a um `Cliente` e contém múltiplos `Produtos`.
 - **Venda ➔ Estoque & Financeiro:** Ao processar um pedido no módulo de Vendas, o sistema deverá abater as quantidades no app de `estoque` e gerar uma fatura a receber no app `financeiro`.
 
-## 🧑‍💻Diagrama
-´´´text
-
-      CLIENTE ||--o{ VENDA : realiza
-      PRODUTO ||--o{ ESTOQUE : possui
-      VENDA }|--|{ PRODUTO : contem
-´´´
-
 ## 👥Colaboradores e Coders
 
 * **David Luiz:**
